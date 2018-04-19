@@ -12,14 +12,13 @@
 extern crate riban;
 
 use std::env;
+use std::process;
 
-/**
- *
- */
 fn main() {
     let mut args: Vec<String> = env::args().collect();
     if args.len() < 2 {
         println!("Usage: riban <iban>");
+        process::exit(1);
     } else {
         let iban = String::from(args.split_off(1).join(""));
         println!("Validating IBAN {}", iban);

@@ -17,16 +17,27 @@ use std::process;
 fn main() {
     let mut args: Vec<String> = env::args().collect();
     if args.len() < 2 {
-        println!("Usage: riban <iban>");
+        help();
         process::exit(1);
     } else {
-        let iban = String::from(args.split_off(1).join(""));
-        println!("Validating IBAN {}", iban);
+        //let split = &args[1..];
+        //println!("{:?}", split);
 
-        if riban::validate_iban(iban) {
-            println!("IBAN is valid");
-        } else {
-            println!("IBAN is NOT valid");
+        // concatenate all the remaining arguments - this way, formatted IBANs can be used as args
+        let to_validate = String::from(args.split_off(1).join(""));
+        let iban = riban::validate_iban(&to_validate);
+
+        match iban {
+            Ok(()) => println!("IBAN is valid"),
+            Err(e) => println!("Invalid IBAN: {}", e),
         }
     }
+}
+
+fn help() {
+    println!("Usage: riban <iban>");
+    println!("");
+    println!("Examples:");
+    println!("riban DE12345678910");
+    println!("riban DE12 3456 7891");
 }

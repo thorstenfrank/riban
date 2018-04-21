@@ -1,11 +1,10 @@
 # riban
 Simple IBAN validator written in Rust
 
-Just some dabbling around with Rust for the first time. 
+Takes an IBAN as an argument and tells you whether it's valid. And if not, why.
 
-Takes an IBAN as an argument and tells you whether it's valid or not. Woohoo!
-
-Corrections, suggestions and tips highly welcome!
+This is an application, not a proper crate to use as a lib - if you're looking for that,
+check out https://crates.io/crates/iban_validate.
 
 ## Building
 
